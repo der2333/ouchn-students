@@ -18,9 +18,16 @@ def student_login(login_name: str, password: str, browser: Browser) -> None:
     index_page.locator("#loginName").fill(login_name)
     index_page.locator("#password").fill(password)
     index_page.locator("#agreeCheckBox").click()
+    index_page.locator("#form_button").click()
+    index_page.wait_for_timeout(2000)  # 等待2秒钟，确保滑块验证加载完成
 
     # 滑块验证
-    slider_validation(index_page)
+    if index_page.get_by_text("1/2").count() == 1:
+        slider_validation(index_page)
+        index_page.wait_for_timeout(5000)
+        slider_validation(index_page)
+    else:
+        slider_validation(index_page)
 
     # 刷点课次数次数
     # 获取课程列表

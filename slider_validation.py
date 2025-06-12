@@ -5,8 +5,6 @@ from playwright.sync_api import Page
 
 
 def slider_validation(index_page: Page):
-    index_page.locator("#form_button").click()
-    index_page.wait_for_timeout(2000)  # 等待2秒钟，确保滑块验证加载完成
     bg_style = index_page.locator("body .geetest_bg").get_attribute("style")
     slide_style = index_page.locator("body .geetest_slice_bg").get_attribute("style")
     if bg_style is None or slide_style is None:
