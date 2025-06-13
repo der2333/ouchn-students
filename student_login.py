@@ -48,10 +48,9 @@ def student_login(login_name: str, password: str, browser: Browser) -> None:
         # 处理单个课程
         try:
             process_course(context, course_url)
-        except Exception as e:
+        except Exception as _:
             if len(context.pages) > 1:
                 context.pages[1].close()
-            print(f"点课出现错误 {course_url}: {e}")
-            print("跳过当前课程")
+            print(f"点课出现错误 {course_url}: 跳过当前课程")
 
     print(f"学号:{login_name}, 密码:{password}")
