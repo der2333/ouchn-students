@@ -29,6 +29,13 @@ def student_login(login_name: str, password: str, browser: Browser) -> None:
     else:
         slider_validation(index_page)
 
+    index_page.wait_for_selector("a.ng-binding.ng-scope")
+
+    if index_page.locator(".select2-choice").is_visible():
+        index_page.locator(".select2-choice").click()
+        index_page.locator(".select2-results-dept-0").last.click()
+        index_page.wait_for_timeout(3000)
+
     # 刷点课次数次数
     # 获取课程列表
     course_list = index_page.locator("a.ng-binding.ng-scope").all()
@@ -42,7 +49,9 @@ def student_login(login_name: str, password: str, browser: Browser) -> None:
         try:
             process_course(context, course_url)
         except Exception as e:
-            print(f"Error processing course {course_url}: {e}")
+            if len(context.pages) > 1:
+                context.pages[1].close()
+            print(f"点课出现错误 {course_url}: {e}")
+            print("跳过当前课程")
 
-    print("login:", login_name, "password:", password)
-    input("Press Enter to continue...")
+    print(f"学号:{login_name}, 密码:{password}")
