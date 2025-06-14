@@ -42,3 +42,11 @@ def slider_validation(index_page: Page):
         end_x, start_y, steps=100
     )  # steps参数使移动更平滑，模拟人类操作
     index_page.mouse.up()
+
+    index_page.wait_for_timeout(2000)  # 等待验证完成
+    if (
+        index_page.locator(".geetest_result_tips").is_visible()
+        and index_page.locator(".geetest_result_tips").inner_text()
+        == "验证失败 请重新尝试"
+    ):
+        slider_validation(index_page)

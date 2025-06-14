@@ -24,7 +24,7 @@ def student_login(login_name: str, password: str, browser: Browser) -> None:
     # 滑块验证
     if index_page.get_by_text("1/2").count() == 1:
         slider_validation(index_page)
-        index_page.wait_for_timeout(5000)
+        index_page.wait_for_timeout(3000)
         slider_validation(index_page)
     else:
         slider_validation(index_page)
@@ -46,11 +46,11 @@ def student_login(login_name: str, password: str, browser: Browser) -> None:
             continue
 
         # 处理单个课程
-        try:
-            process_course(context, course_url)
-        except Exception as _:
-            if len(context.pages) > 1:
-                context.pages[1].close()
-            print(f"点课出现错误 {course_url}: 跳过当前课程")
+        # try:
+        process_course(context, course_url)
+        # except Exception as _:
+        #     if len(context.pages) > 1:
+        #         context.pages[1].close()
+        #     print(f"点课出现错误 {course_url}: 跳过当前课程")
 
     print(f"学号:{login_name}, 密码:{password}")

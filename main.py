@@ -15,15 +15,16 @@ def main():
     with sync_playwright() as p:
         browser = p.chromium.launch(
             headless=False,
-            executable_path="C:\\Users\\13388\\AppData\\Local\\ms-playwright\\chromium-1161\\chrome-win\\chrome.exe",
-            # executable_path="/Users/fyf/Library/Caches/ms-playwright/chromium-1161/chrome-mac/Chromium.app/Contents/MacOS/Chromium",
+            # executable_path="C:\\Users\\13388\\AppData\\Local\\ms-playwright\\chromium-1161\\chrome-win\\chrome.exe",
+            executable_path="/Users/fyf/Library/Caches/ms-playwright/chromium-1161/chrome-mac/Chromium.app/Contents/MacOS/Chromium",
         )
         for login_name, password in students_list.items():
             try:
                 student_login(login_name, password, browser)
-            except Exception as _:
+            except Exception as e:
                 browser.contexts[0].close()
                 print(f"登录失败，跳过 {login_name}")
+                # print(f"错误信息: {e}")
 
 
 if __name__ == "__main__":
