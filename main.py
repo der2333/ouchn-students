@@ -21,7 +21,7 @@ def main():
         for login_name, password in students_list.items():
             try:
                 student_login(login_name, password, browser)
-            except Exception as e:
+            except Exception as _:
                 browser.contexts[0].close()
                 print(f"登录失败，跳过 {login_name}")
                 # print(f"错误信息: {e}")
