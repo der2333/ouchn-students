@@ -6,11 +6,15 @@ from student_login import student_login
 
 def main():
     students_list: dict[str, str] = {}
-    with open("studentsList.csv", "r", newline="", encoding="utf-8") as file:
-        reader = csv.reader(file)
-        next(reader)  # Skip the header row
-        for row in reader:
-            students_list.update({row[0]: f"Ouchn@{row[1]}"})
+    try:
+        with open("学生账号.csv", "r", newline="", encoding="utf-8") as file:
+            reader = csv.reader(file)
+            next(reader)  # Skip the header row
+            for row in reader:
+                students_list.update({row[0]: f"Ouchn@{row[1]}"})
+    except Exception:
+        print("读取(学生账号.csv)文件出错，请确保文件存在并包含正确的格式。")
+        return
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
@@ -21,7 +25,7 @@ def main():
         for login_name, password in students_list.items():
             try:
                 student_login(login_name, password, browser)
-            except Exception as _:
+            except Exception:
                 browser.contexts[0].close()
                 print(f"登录失败，跳过 {login_name}")
                 # print(f"错误信息: {e}")

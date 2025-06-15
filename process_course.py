@@ -14,7 +14,7 @@ def process_course(context: BrowserContext, course_url: str) -> None:
             course_page.locator(".next-btn").click()
             course_page.wait_for_timeout(3000)
         course_page.close()
-    except Exception as _:
+    except Exception:
         if len(context.pages) > 1:
             context.pages[1].close()
         process_course(context, course_url)
