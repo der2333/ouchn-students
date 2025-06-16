@@ -1,4 +1,5 @@
 import re
+import os
 from urllib import request
 import ddddocr
 from playwright.sync_api import Page
@@ -12,6 +13,10 @@ def slider_validation(index_page: Page):
     p = r'background-image: url\("(.*?)"\);'
     bg_url: str = re.findall(p, bg_style, re.S)[0]
     slide_url: str = re.findall(p, slide_style, re.S)[0]
+
+    # 确保tmp目录存在
+    if not os.path.exists("tmp"):
+        os.makedirs("tmp")
 
     # 下载滑块图片、背景图片
     request.urlretrieve(bg_url, "tmp/bg.png")

@@ -20,7 +20,7 @@ def main():
         browser = p.chromium.launch(
             headless=False,
             # executable_path="C:\\Users\\13388\\AppData\\Local\\ms-playwright\\chromium-1161\\chrome-win\\chrome.exe",
-            executable_path="/Users/fyf/Library/Caches/ms-playwright/chromium-1161/chrome-mac/Chromium.app/Contents/MacOS/Chromium",
+            # executable_path="/Users/fyf/Library/Caches/ms-playwright/chromium-1161/chrome-mac/Chromium.app/Contents/MacOS/Chromium",
         )
         for login_name, password in students_list.items():
             try:

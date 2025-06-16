@@ -53,4 +53,4 @@ def student_login(login_name: str, password: str, browser: Browser) -> None:
         #         context.pages[1].close()
         #     print(f"点课出现错误 {course_url}: 跳过当前课程")
 
-    print(f"学号:{login_name}, 密码:{password}")
+    print(f"登录完成，学号:{login_name}")
