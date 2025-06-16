@@ -48,7 +48,7 @@ def slider_validation(index_page: Page):
     )  # steps参数使移动更平滑，模拟人类操作
     index_page.mouse.up()
 
-    index_page.wait_for_timeout(2000)  # 等待验证完成
+    index_page.wait_for_timeout(3000)  # 等待验证完成
     if (
         index_page.locator(".geetest_result_tips").is_visible()
         and index_page.locator(".geetest_result_tips").inner_text()

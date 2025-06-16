@@ -27,7 +27,7 @@ def main():
                 student_login(login_name, password, browser)
             except Exception:
                 browser.contexts[0].close()
-                print(f"登录失败，跳过：{login_name}")
+                print(f"跳过：{login_name}，登录失败，请检查学号或密码是否正确。")
                 # print(f"错误信息: {e}")
 
     input("运行完成，按回车键退出程序...")
