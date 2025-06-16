@@ -24,10 +24,10 @@ def slider_validation(index_page: Page):
 
     # 使用ddddocr计算出目标位置
     det = ddddocr.DdddOcr(det=False, ocr=False)
-    with open("tmp/bg.png", "rb") as f:
-        bg_img = f.read()
-    with open("tmp/slide.png", "rb") as f:
-        slide_img = f.read()
+    with open("tmp/bg.png", "rb") as bg:
+        bg_img = bg.read()
+    with open("tmp/slide.png", "rb") as slide:
+        slide_img = slide.read()
     res = det.slide_match(slide_img, bg_img, simple_target=True)
     # print(res["target"][0])
 
