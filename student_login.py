@@ -31,6 +31,7 @@ def student_login(login_name: str, password: str, browser: Browser) -> None:
 
     index_page.wait_for_selector("a.ng-binding.ng-scope")
 
+    # 如果超过10个课程，选择显示100页
     if index_page.locator(".select2-choice").is_visible():
         index_page.locator(".select2-choice").click()
         index_page.locator(".select2-results-dept-0").last.click()
@@ -53,4 +54,4 @@ def student_login(login_name: str, password: str, browser: Browser) -> None:
         #         context.pages[1].close()
         #     print(f"点课出现错误 {course_url}: 跳过当前课程")
 
-    print(f"登录完成，学号:{login_name}")
+    print(f"登录完成，学号：{login_name}")
