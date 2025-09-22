@@ -17,11 +17,15 @@ def log_request(request: Request) -> None:
 
         # 使用 APIRequestContext 重新发送请求
         num = 5
+        try:
+            cookies = request.all_headers()["cookie"]
+        except Exception:
+            cookies = ""
         headers = {
             "Accept": "application/json, text/plain, */*",
             "Content-Type": "application/json;charset=UTF-8",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36",
-            "Cookie": request.all_headers()["cookie"],
+            "Cookie": cookies,
         }
         for _ in range(num):
             requests.post(
