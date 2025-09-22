@@ -4,6 +4,7 @@ def main():
     import os
     from playwright.sync_api import sync_playwright
     from student_login import student_login
+    from datetime import datetime
 
     students_list: dict[str, str] = {}
     try:
@@ -16,9 +17,7 @@ def main():
         print("读取学生账号.csv文件出错，请确保文件存在并包含正确的格式。")
         return
 
-    # 读取或初始化登录次数json，结构：{"学号": {"count": int, "last_date": "YYYY-MM-DD"}}
-    from datetime import datetime
-
+    # 读取或初始化登录次数json，结构：{"学号": {"count": int, "last_date": "yyyy-mm-dd"}}
     today = datetime.now().strftime("%Y-%m-%d")
     login_count_path = "login_count.json"
     if os.path.exists(login_count_path):
