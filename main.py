@@ -8,14 +8,14 @@ def main():
 
     students_list: dict[str, str] = {}
     try:
-        with open("学生账号.csv", "r", newline="", encoding="utf-8") as file:
+        with open("学生账号.csv", "r") as file:
             reader = csv.reader(file)
             next(reader)  # Skip the header row
             for row in reader:
                 students_list.update({row[0]: row[1]})
     except Exception:
-        print("读取学生账号.csv文件出错，请确保文件存在并包含正确的格式。")
-        return
+        print("读取学生账号.csv文件出错，请确保文件存在并保存为UTF-8格式的csv文件。")
+        input("按回车键退出程序...")
 
     # 读取或初始化登录次数json，结构：
     # {
