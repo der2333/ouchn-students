@@ -14,7 +14,7 @@ def main():
             for row in reader:
                 students_list.update({row[0]: row[1]})
     except Exception:
-        print("读取学生账号.csv文件出错，请确保文件存在并保存为UTF-8格式的csv文件。")
+        print('读取"学生账号.csv文件"出错，请确保文件存在。')
         input("按回车键退出程序...")
 
     # 读取或初始化登录次数json，结构：
