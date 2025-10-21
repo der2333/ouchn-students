@@ -115,7 +115,6 @@ def main():
                 "--disable-blink-features=AutomationControlled",
                 "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36",
             ],
-            executable_path="C:\\Users\\13388\\AppData\\Local\\ms-playwright\\chromium-1161\\chrome-win\\chrome.exe",
         )
 
         for login_name, password in students_to_login.items():

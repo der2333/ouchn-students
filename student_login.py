@@ -15,19 +15,20 @@ def student_login(login_name: str, password: str, browser: Browser) -> None:
     index_page.wait_for_load_state("networkidle")
 
     # 输入用户名和密码
-    index_page.locator("#loginName").fill(login_name)
-    index_page.locator("#password").fill(password)
+    index_page.locator('input[name="name"]').fill(login_name)
+    index_page.locator('input[name="pwd"]').fill(password)
     index_page.locator("#agreeCheckBox").click()
-    index_page.locator("#form_button").click()
-    index_page.wait_for_timeout(2000)  # 等待2秒钟，确保滑块验证加载完成
+    index_page.locator('button[type="submit"]').click()
+    index_page.wait_for_timeout(5000)  # 等待确保滑块验证加载完成
 
     # 滑块验证
-    if index_page.get_by_text("1/2").count() == 1:
-        slider_validation(index_page)
-        index_page.wait_for_timeout(3000)
-        slider_validation(index_page)
-    else:
-        slider_validation(index_page)
+    if index_page.url != "https://lms.ouchn.cn/user/courses#/":
+        if index_page.get_by_text("1/2").count() == 1:
+            slider_validation(index_page)
+            index_page.wait_for_timeout(3000)
+            slider_validation(index_page)
+        else:
+            slider_validation(index_page)
 
     index_page.wait_for_selector("a.ng-binding.ng-scope")
 
@@ -46,10 +47,12 @@ def student_login(login_name: str, password: str, browser: Browser) -> None:
         if course_url is None:
             continue
 
-        # 处理单个课程
+        ##处理单个课程
         # try:
         process_course(context, course_url)
-        # except Exception as _:
-        #     if len(context.pages) > 1:
-        #         context.pages[1].close()
-        #     print(f"点课出现错误 {course_url}: 跳过当前课程")
+
+
+"""         except Exception as _:
+            if len(context.pages) > 1:
+                context.pages[1].close()
+            print(f"点课出现错误 {course_url}: 跳过当前课程") """
