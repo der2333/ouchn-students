@@ -8,8 +8,6 @@ from process_course import process_course
 def student_login(login_name: str, password: str, browser: Browser) -> None:
     context = browser.new_context()
     index_page = context.new_page()
-    if len(browser.contexts) > 1:
-        browser.contexts[0].close()
     init_page(index_page)
     index_page.goto("https://lms.ouchn.cn/user/courses#/")
     index_page.wait_for_load_state("networkidle")
@@ -50,6 +48,8 @@ def student_login(login_name: str, password: str, browser: Browser) -> None:
         ##处理单个课程
         # try:
         process_course(context, course_url)
+
+    context.close()
 
 
 """         except Exception as _:

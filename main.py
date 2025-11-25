@@ -86,6 +86,9 @@ def main():
 
     # 补充新学生，初始化为{"count": 0, "last_date": ""}
     for login_name in students_list.keys():
+        if login_name == "":
+            continue
+
         if login_name not in login_count or not isinstance(
             login_count[login_name], dict
         ):
@@ -139,7 +142,7 @@ def main():
                     json.dump(login_count, f, ensure_ascii=False, indent=2)
             except Exception:
                 browser.contexts[0].close()
-                print(f"跳过：{login_name}，登录失败，请检查学号或密码是否正确。")
+                print(f"跳过：{login_name}，密码不正确或网页加载异常")
 
     input("运行完成，按回车键退出程序...")
 
