@@ -1,6 +1,5 @@
 from playwright.sync_api import Browser
 
-from slider_validation import slider_validation
 from init_page import init_page
 from process_course import process_course
 
@@ -19,14 +18,22 @@ def student_login(login_name: str, password: str, browser: Browser) -> None:
     index_page.locator('button[type="submit"]').click()
     index_page.wait_for_timeout(5000)  # 等待确保滑块验证加载完成
 
-    # 滑块验证
-    if index_page.url != "https://lms.ouchn.cn/user/courses#/":
-        if index_page.get_by_text("1/2").count() == 1:
-            slider_validation(index_page)
-            index_page.wait_for_timeout(3000)
-            slider_validation(index_page)
-        else:
-            slider_validation(index_page)
+    # # 滑块验证
+    # if index_page.url != "https://lms.ouchn.cn/user/courses#/":
+    #     if index_page.get_by_text("1/2").count() == 1:
+    #         slider_validation(index_page)
+    #         index_page.wait_for_timeout(3000)
+    #         slider_validation(index_page)
+    #     else:
+    #         slider_validation(index_page)
+
+    # 切换专升本学生
+    index_page.locator(".entry").nth(2).click()
+    index_page.wait_for_timeout(1000)
+    if index_page.locator(".login-user.ng-scope").count() != 0:
+        index_page.locator(".login-user.ng-scope").last.click()
+        index_page.wait_for_timeout(3000)
+        index_page.goto("https://lms.ouchn.cn/user/courses#/")
 
     index_page.wait_for_selector("a.ng-binding.ng-scope")
 

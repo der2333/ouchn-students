@@ -19,4 +19,5 @@ tmp/
 main.spec
 
 *.zip
-login_count.json
+*.json
+*.csv
