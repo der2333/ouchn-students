@@ -57,20 +57,19 @@ python main.py
 
 ## 打包命令
 
-### 方式一：包含浏览器（独立运行，无需目标机器安装 Playwright）
-
-exe 体积较大（~150MB+），但可一键运行。
+exe 体积较大（~150MB+），但可一键运行。使用 `--no-upx` 和完整版本信息减少杀毒软件误报。
 
 ```bash
-python -m nuitka --mode=onefile --playwright-include-browser=chromium-1187 main.py
-```
-
-### 方式二：不包含浏览器（目标机器需先安装 Playwright 浏览器）
-
-exe 体积小，但需要目标机器已安装 Chromium。
-
-```bash
-python -m nuitka --mode=onefile --enable-plugin=playwright main.py
+python -m nuitka --mode=onefile ^
+  --playwright-include-browser=chromium-1187 ^
+  --no-upx ^
+  --windows-company-name="xichen" ^
+  --windows-product-name="OUCHN 学习助手" ^
+  --windows-file-version="1.0.0.0" ^
+  --windows-product-version="1.0.0.0" ^
+  --windows-file-description="国家开放大学学习平台自动登录工具" ^
+  --windows-copyright="Copyright © 2026" ^
+  main.py
 ```
 
 ## 注意事项
