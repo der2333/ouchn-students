@@ -5,9 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "ddddocr>=1.5.6",
+    "nuitka[all]>=4.0.7",
     "playwright>=1.55.0",
-    "pyinstaller>=6.16.0",
     "requests>=2.32.5",
 ]
 

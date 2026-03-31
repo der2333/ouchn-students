@@ -31,7 +31,7 @@ def student_login(login_name: str, password: str, browser: Browser) -> None:
     index_page.locator(".entry").nth(2).click()
     index_page.wait_for_timeout(1000)
     if index_page.locator(".login-user.ng-scope").count() != 0:
-        index_page.locator(".login-user.ng-scope").last.click()
+        index_page.get_by_text(f"{login_name}").click()
         index_page.wait_for_timeout(3000)
         index_page.goto("https://lms.ouchn.cn/user/courses#/")
 

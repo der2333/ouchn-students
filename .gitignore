@@ -5,6 +5,9 @@ build/
 dist/
 wheels/
 *.egg-info
+*.build
+*.dist
+*.onefile-build
 
 # Virtual environments
 .venv
@@ -21,3 +24,5 @@ main.spec
 *.zip
 *.json
 *.csv
+*.exe
+学生账号.csv
