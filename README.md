@@ -29,7 +29,6 @@ ouchn-students/
 
 - Python 3.10+
 - playwright
-- ddddocr
 - requests
 - nuitka（打包用）
 
@@ -58,8 +57,20 @@ python main.py
 
 ## 打包命令
 
+### 方式一：包含浏览器（独立运行，无需目标机器安装 Playwright）
+
+exe 体积较大（~150MB+），但可一键运行。
+
 ```bash
-python -m nuitka --mode=onefile --enable-plugin=playwright --playwright-include-browser=chromium-1187 main.py
+python -m nuitka --mode=onefile --playwright-include-browser=chromium-1187 main.py
+```
+
+### 方式二：不包含浏览器（目标机器需先安装 Playwright 浏览器）
+
+exe 体积小，但需要目标机器已安装 Chromium。
+
+```bash
+python -m nuitka --mode=onefile --enable-plugin=playwright main.py
 ```
 
 ## 注意事项
@@ -67,3 +78,4 @@ python -m nuitka --mode=onefile --enable-plugin=playwright --playwright-include-
 - 登录次数每学期自动重置
 - 滑块验证功能已注释（可直接启用）
 - 请确保账号密码正确，避免锁定
+- 打包前建议先用 `python main.py` 本地测试运行
