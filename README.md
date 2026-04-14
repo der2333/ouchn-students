@@ -57,18 +57,14 @@ python main.py
 
 ## 打包命令
 
-exe 体积较大（~150MB+），但可一键运行。使用 `--no-upx` 和完整版本信息减少杀毒软件误报。
-
 ```bash
-python -m nuitka --mode=onefile ^
-  --playwright-include-browser=chromium-1187 ^
-  --no-upx ^
-  --windows-company-name="xichen" ^
-  --windows-product-name="OUCHN 学习助手" ^
-  --windows-file-version="1.0.0.0" ^
-  --windows-product-version="1.0.0.0" ^
-  --windows-file-description="国家开放大学学习平台自动登录工具" ^
-  --windows-copyright="Copyright © 2026" ^
+python -m nuitka --mode=onefile \
+  --playwright-include-browser=chromium-1187 \
+  --windows-company-name="xichen" \
+  --windows-product-name="OUCHN 学习助手" \
+  --windows-file-version="1.0.0.0" \
+  --windows-product-version="1.0.0.0" \
+  --windows-file-description="国家开放大学学习平台自动登录工具" \
   main.py
 ```
 

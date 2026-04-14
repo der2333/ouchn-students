@@ -101,11 +101,11 @@ def main():
     except Exception:
         print("尝试写入 login_count.json 失败，变更未保存。请检查文件权限。")
 
-    # 只处理登录次数未满20次的学生
+    # 只处理登录次数未满30次的学生
     students_to_login = {
         k: v
         for k, v in students_list.items()
-        if login_count.get(k, {}).get("count", 0) < 20
+        if login_count.get(k, {}).get("count", 0) < 30
     }
     if not students_to_login:
         print("所有学生登录次数均已达上限，无需自动登录。")
