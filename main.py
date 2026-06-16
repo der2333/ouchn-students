@@ -2,20 +2,31 @@ def main():
     import csv
     import json
     import os
+    import sys
+    from pathlib import Path
     from playwright.sync_api import sync_playwright
     from student_login import student_login
     from datetime import datetime
 
+    if getattr(sys, "frozen", False):
+        app_dir = Path(sys.executable).resolve().parent
+    else:
+        app_dir = Path(__file__).resolve().parent
+
+    students_path = app_dir / "学生账号.csv"
+    login_count_path = app_dir / "login_count.json"
+
     students_list: dict[str, str] = {}
     try:
-        with open("学生账号.csv", "r") as file:
+        with open(students_path, "r") as file:
             reader = csv.reader(file)
             next(reader)  # Skip the header row
             for row in reader:
                 students_list.update({row[0]: row[1]})
-    except Exception:
-        print('读取"学生账号.csv文件"出错，请确保文件存在。')
+    except Exception as exc:
+        print(f'读取"{students_path}"出错：{exc}')
         input("按回车键退出程序...")
+        return
 
     # 读取或初始化登录次数json，结构：
     # {
@@ -23,7 +34,6 @@ def main():
     #   "__meta__": {"last_reset_semester": "2025-Spring"}
     # }
     today = datetime.now().strftime("%Y-%m-%d")
-    login_count_path = "login_count.json"
     if os.path.exists(login_count_path):
         with open(login_count_path, "r", encoding="utf-8") as f:
             try:
@@ -118,6 +128,7 @@ def main():
                 "--disable-blink-features=AutomationControlled",
                 "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36",
             ],
+            channel="chrome",
         )
 
         for login_name, password in students_to_login.items():
