@@ -1,10 +1,11 @@
 [project]
 name = "ouchn-students"
 version = "0.1.0"
-description = "Add your description here"
+description = "国家开放大学学习平台自动登录工具"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "openpyxl>=3.1.5",
     "playwright>=1.55.0",
     "pyinstaller>=6.20.0",
 ]

@@ -18,11 +18,11 @@ tmp/
 # Mac
 .DS_Store
 
-# pyinstaller
-main.spec
+# pyinstaller（main.spec 需提交到仓库，故不忽略）
 
 *.zip
 *.json
 *.csv
 *.exe
 学生账号.csv
+学生账号.xlsx
